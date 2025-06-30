@@ -8,6 +8,12 @@
 $tablet: 900px;
 $desktop: 1350px;
 
+
+$color00: rgb(255, 248, 248);
+$color01: rgb(40, 40, 40);
+$color01bis: rgba(40, 40, 40, 0.615);
+$color02: rgb(255, 255, 255);
+
 a, p, span{
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -18,6 +24,8 @@ header{
     height: 100dvh;
     max-height: 100dvh;
     padding: 1.5rem;
+    overflow: hidden;
+      
 
     display: flex;
     flex-direction: column;
@@ -28,16 +36,32 @@ header{
     
     @media only screen and (min-width:$tablet){
         padding: 4rem 0;
-        row-gap: 2rem;
     }
-    @media only screen and (min-width:$desktop){
-        row-gap: 4rem;
+    h1,p{
+        z-index: 10;
     }
 
     h1{
         font-size: clamp(2rem, 3vw, 6rem);
         font-family: Arial, Helvetica, sans-serif;
-        color: brown;
+        color: $color00;
+    }
+    p{
+        color: $color00;
+        font-size: clamp(0.9rem, 2vw, 1.2rem);
+    }
+    >img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        position: absolute;
+        z-index: 0;
+        inset: 0; //lo mismo que lo de abajo
+        // top: 0;
+        // left: 0;
+        // right: 0;
+        // bottom: 0;
     }
     .contenedor_fichas{
         width: 100%;
@@ -58,30 +82,40 @@ header{
             overflow: hidden;
             width: 48%;
             height: 300px;
-            background-color: rgb(48, 62, 62);            
-            text-decoration: none;            
-            padding: 1.5rem;            
+            background-color: $color01;            
+            text-decoration: none;     
             border-radius: 10px;
+            
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             &:hover h2{
                 transform: scale(1.05);
+                -webkit-transform: scale(1.05);
+                color: $color00;
+                background-color: $color01bis;
             }
             &:hover img{
-                transform: scale(1.1);
+                transform: scale(1.2);
+                -webkit-transform: scale(1.2) ;
                 filter: grayscale(0);
+                -webkit-filter: grayscale(0);
+                opacity: 1;
             }
             @media only screen and (min-width:$desktop){
                 width: 23%;            
             }
+            
             h2, img{
                 transition: 0.4s;
+                -webkit-transition: 0.4s;
             }
             h2{
-                color: white;
+                width: 100%;
+                padding: 2rem 1rem;
+                color: $color00;
                 text-align: center;
-                position: relative;
                 z-index: 10;
             }
             img{
@@ -91,10 +125,13 @@ header{
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                opacity: 0.3;
-                filter: grayscale(1)
+                object-position: center;
+                opacity: 0.5;
+                filter: grayscale(1) blur(2px);
+                -webkit-filter: grayscale(1) blur(2px)
             }
 
         }
     }
+    
 }
